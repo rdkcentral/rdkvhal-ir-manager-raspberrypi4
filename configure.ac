@@ -21,7 +21,7 @@
 
 AC_PREREQ([2.68])
 AC_INIT([iarmmgrs-hal], [1.0], [ridish.ra@lnttechservices.com])
-AC_CONFIG_SRCDIR([ir/plat-ir.c])
+AC_CONFIG_SRCDIR(source/plat-ir.c])
 
 AM_INIT_AUTOMAKE([foreign 1.0])
 
@@ -33,22 +33,12 @@ LT_INIT
 
 # Libs and cflags
 IARMMGRS_HAL_IR_LIBS=""
-#IARMMGRS_HAL_POWER_LIBS=""
-#IARMMGRS_HAL_DS_LIBS=""
 AC_SUBST(IARMMGRS_HAL_IR_LIBS)
-#AC_SUBST(IARMMGRS_HAL_POWER_LIBS)
-#AC_SUBST(IARMMGRS_HAL_DS_LIBS)
 
 # More libs and cflags should using pkg-config later.
 # now we just temperary hard coded here.
 IARMMGRS_HAL_IR_CFLAGS="-I$PKG_CONFIG_SYSROOT_DIR/usr/include/rdk/iarmmgrs-hal"
-#IARMMGRS_HAL_POWER_CFLAGS="-I$PKG_CONFIG_SYSROOT_DIR/usr/include/rdk/iarmmgrs-hal \
-#                           -I$PKG_CONFIG_SYSROOT_DIR/usr/include/rdk/iarmbus"
-#IARMMGRS_HAL_DS_CFLAGS="-I$PKG_CONFIG_SYSROOT_DIR/usr/include/rdk/iarmmgrs-hal \
-#                          -I$PKG_CONFIG_SYSROOT_DIR/usr/include/rdk/iarmbus"
 AC_SUBST(IARMMGRS_HAL_IR_CFLAGS)
-#AC_SUBST(IARMMGRS_HAL_POWER_CFLAGS)
-#AC_SUBST(IARMMGRS_HAL_DS_CFLAGS)
 
 # Checks for header files.
 AC_CHECK_HEADERS([limits.h stdlib.h string.h sys/time.h unistd.h])
@@ -78,6 +68,6 @@ AC_ARG_ENABLE([thermalprotection], [--enable-thermalprotection "Enable thermal p
        esac], [thermalprotection=false])
 AM_CONDITIONAL([THERMAL_PROTECTION_ENABLED], [test x$thermalprotection = xtrue])
 
-AC_CONFIG_FILES([Makefile ir/Makefile])
+AC_CONFIG_FILES([Makefile source/Makefile])
 AC_OUTPUT
 
